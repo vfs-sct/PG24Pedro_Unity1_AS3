@@ -13,6 +13,7 @@ public class ShipController : MonoBehaviour
     
     private float yaw;
     private float pitch;
+    private float roll;
     void Start()
     {
         
@@ -27,9 +28,10 @@ public class ShipController : MonoBehaviour
         
         
         yaw += horizontalInput * YawAmount * Time.deltaTime;
-         pitch = Mathf.Lerp(0, 20, Math.Abs(verticalInput)) * Mathf.Sign(verticalInput);
+        pitch = Mathf.Lerp(0, 20, Math.Abs(verticalInput)) * Mathf.Sign(verticalInput);
+        roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
         
-        transform.localRotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch);
+        transform.localRotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll);
 
     }
 }
