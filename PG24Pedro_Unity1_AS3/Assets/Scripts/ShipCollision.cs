@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShipCollision : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }
