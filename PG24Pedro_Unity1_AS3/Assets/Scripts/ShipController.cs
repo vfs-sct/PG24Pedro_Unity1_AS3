@@ -14,11 +14,6 @@ public class ShipController : MonoBehaviour
     private float yaw;
     private float pitch;
     private float roll;
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         transform.position += transform.forward * FlySpeed * Time.deltaTime;
