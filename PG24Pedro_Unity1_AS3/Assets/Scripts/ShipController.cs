@@ -5,28 +5,57 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+    [Header("Plane Stats")]
+
     [SerializeField]
-    float FlySpeed = 15;
-    
+    float throttleIncrement = 0.1f;
     [SerializeField]
-    float YawAmount = 120;
-    
+    float maxThrust = 200f;
+    [SerializeField] 
+    float responsiveness = 10f;
+
+    private float throttle;
     private float yaw;
     private float pitch;
     private float roll;
+
+    private float responseModifier
+    {
+        get { return (rb.mass / 10f) * responsiveness; }
+        
+    }
+
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void HandleInputs()
+    {
+        roll = Input.GetAxis("Roll");
+        pitch = Input.GetAxis("Pitch");
+        yaw = Input.GetAxis("Yaw");
+
+        if (Input.GetKey(KeyCode.Space)) throttle += throttleIncrement;
+        else if (Input.GetKey(KeyCode.LeftControl)) throttle -= throttleIncrement;
+
+        throttle = Mathf.Clamp(throttle, 0f, 100f);
+    }
+
     void Update()
     {
-        transform.position += transform.forward * FlySpeed * Time.deltaTime;
+        HandleInputs();
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        
-        
-        yaw += horizontalInput * YawAmount * Time.deltaTime;
-        pitch = Mathf.Lerp(0, 20, Math.Abs(verticalInput)) * Mathf.Sign(verticalInput);
-        roll = Mathf.Lerp(0, 30, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
-        
-        transform.localRotation = Quaternion.Euler(Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(transform.forward * maxThrust * throttle);
+        rb.AddTorque(transform.up * yaw * responseModifier);
+        rb.AddTorque(transform.right * pitch * responseModifier);
+        rb.AddTorque(-transform.forward * roll * responseModifier);
 
     }
 }
