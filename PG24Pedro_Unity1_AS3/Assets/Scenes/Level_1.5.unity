@@ -2942,6 +2942,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 605187827635370251, guid: a77a0df826668a24e8a69b1ea6157ad2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5960463155839158806, guid: a77a0df826668a24e8a69b1ea6157ad2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10460,21 +10464,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5343276225051362713, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
+      propertyPath: lerpColorTime
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343276225051362713, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
+      propertyPath: collectibleMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 18abfc74c2283e84cb7cfc3ab8ffb855, type: 2}
     - target: {fileID: 5343276225051362714, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5343276225051362714, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.422092
+      value: 183.3
       objectReference: {fileID: 0}
     - target: {fileID: 5343276225051362714, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 146.5992
+      value: 61.6
       objectReference: {fileID: 0}
     - target: {fileID: 5343276225051362714, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 67.93
+      value: 181.8
       objectReference: {fileID: 0}
     - target: {fileID: 5343276225051362714, guid: 232f0e2518a2c6c4e9afb41710150da6, type: 3}
       propertyPath: m_LocalRotation.w

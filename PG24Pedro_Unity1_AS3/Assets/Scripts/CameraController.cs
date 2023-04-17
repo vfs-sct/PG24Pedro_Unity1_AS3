@@ -18,7 +18,9 @@ public class CameraController : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Alpha3)) index = 2;
         else if(Input.GetKeyDown(KeyCode.Alpha4)) index = 3;
 
+
         target = povs[index].position;
+
     }
 
     private void FixedUpdate()
