@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CollectCollectibles : MonoBehaviour
 {
+    [SerializeField] private GameObject collectibles;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     
+
 }

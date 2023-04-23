@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    /*private static GameManager _instance;
 
     public static GameManager Instance
     {
         get { return _instance; }
-    }
+    }*/
 
     [SerializeField] private GameObject _gameOverScreen;
 
@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _playerPrefab;
     
-    [SerializeField] private int _maxLives = 3;
+    [SerializeField] private int _maxLives = 2;
 
-    [SerializeField] private int _remainingLives;
+    public static int _remainingLives;
+
+    public static bool isAlive = true;
     
     
-
-
-    void Start()
+    public void Start()
     {
         _remainingLives = _maxLives;
         _gameOverScreen.SetActive(false);
@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     private void PlayerDeath()
     {
+        _gameOverScreen.SetActive(true);
+        ScoreCount.SetScore(0);
+        _remainingLives = _maxLives;
 
     }
     
@@ -42,12 +45,39 @@ public class GameManager : MonoBehaviour
     {
         int currScore = ScoreCount.GetScore();
 
-        if (currScore == 7)
+        if (currScore == 2)
         {
             _winingScreen.SetActive(true);   
         }
-    }
-    
-    
 
+        if (!isAlive)
+        {
+            PlayerDeath();
+        }
+    }
+
+    public static void DoDamage()
+    {
+        if (_remainingLives > 0)
+        {
+            --_remainingLives;
+        }
+
+        else
+        {
+            isAlive = false;
+        }
+
+    }
+
+    public void Restart()
+    {
+        isAlive = true;
+        _gameOverScreen.SetActive(false);
+        _winingScreen.SetActive(false);
+        ScoreCount.SetScore(0);
+        _remainingLives = _maxLives;
+
+        _playerPrefab.GetComponent<ShipController>().respawnPlayer();
+    }
 }

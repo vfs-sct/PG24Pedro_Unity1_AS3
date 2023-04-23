@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneControl : MonoBehaviour
 {
+    [SerializeField] private GameManager _instance;
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        
     }
 
     public void Quit()
@@ -18,7 +20,10 @@ public class SceneControl : MonoBehaviour
     public void ReturnToMainMenu(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
 
-        
+    public void Restart()
+    {
+        _instance.Restart();
     }
 }

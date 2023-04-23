@@ -20,6 +20,11 @@ public class ScoreCount : MonoBehaviour
         return score;
     }
 
+    public static void SetScore(int newScore)
+    {
+        score = newScore;
+    }
+
     // Update is called once per frame
     void Update()
     {

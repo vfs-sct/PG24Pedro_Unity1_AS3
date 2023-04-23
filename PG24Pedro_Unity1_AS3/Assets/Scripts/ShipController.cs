@@ -53,9 +53,7 @@ public class ShipController : MonoBehaviour
     public void SetMovementToZero()
     {
         throttle = 0;
-        yaw = 0;
-        pitch = 0;
-        roll = 0;
+
     }
 
     void Update()
@@ -75,10 +73,19 @@ public class ShipController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        throttle = 0;
-        yaw = 0;
-        roll = 0;
-        pitch = 0;
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SetMovementToZero();
+            
+            this.transform.position = respawnPoint.transform.position;
+
+            GameManager.DoDamage();
+        }
+    }
+
+    public void respawnPlayer()
+    {
+        SetMovementToZero();
         this.transform.position = respawnPoint.transform.position;
     }
 }
