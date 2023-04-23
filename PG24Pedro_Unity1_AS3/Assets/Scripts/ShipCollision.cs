@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class ShipCollision : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    /*[SerializeField] private GameObject respawnPoint;
+    public bool OnCollisionEnter(Collision other)
     {
-        Destroy(this.gameObject);
+        return;
     }
+    
+    public void RespawnPlayer()
+    {
+        Transform spawnPoint = respawnPoint.gameObject.transform;
+        transform.position = spawnPoint.position;
+        
+    }*/
 }

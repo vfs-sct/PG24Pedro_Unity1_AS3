@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ScoreCount : MonoBehaviour
 {
-    public int score;
+    public static int score;
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Collectible"))
@@ -12,6 +13,11 @@ public class ScoreCount : MonoBehaviour
             score++;
             Debug.Log(score);
         }
+    }
+
+    public static int GetScore()
+    {
+        return score;
     }
 
     // Update is called once per frame

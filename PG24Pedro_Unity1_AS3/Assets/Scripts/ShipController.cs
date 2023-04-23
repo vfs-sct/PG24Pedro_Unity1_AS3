@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -14,7 +15,12 @@ public class ShipController : MonoBehaviour
     [SerializeField] 
     float responsiveness = 10f;
 
-    private float throttle;
+    [SerializeField] private GameObject respawnPoint;
+    
+
+    private bool _hasControl = true;
+
+    public float throttle;
     private float yaw;
     private float pitch;
     private float roll;
@@ -44,6 +50,14 @@ public class ShipController : MonoBehaviour
         throttle = Mathf.Clamp(throttle, 0f, 100f);
     }
 
+    public void SetMovementToZero()
+    {
+        throttle = 0;
+        yaw = 0;
+        pitch = 0;
+        roll = 0;
+    }
+
     void Update()
     {
         HandleInputs();
@@ -57,5 +71,14 @@ public class ShipController : MonoBehaviour
         rb.AddTorque(transform.right * pitch * responseModifier);
         rb.AddTorque(-transform.forward * roll * responseModifier);
 
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        throttle = 0;
+        yaw = 0;
+        roll = 0;
+        pitch = 0;
+        this.transform.position = respawnPoint.transform.position;
     }
 }
