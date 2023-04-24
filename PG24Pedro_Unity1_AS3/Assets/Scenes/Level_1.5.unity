@@ -11274,6 +11274,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 643155572}
   _maxLives: 3
   goal: 5
+  _scoreText: {fileID: 1832666093}
 --- !u!4 &1866748091
 Transform:
   m_ObjectHideFlags: 0
