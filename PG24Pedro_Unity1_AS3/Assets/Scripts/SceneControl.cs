@@ -8,8 +8,9 @@ public class SceneControl : MonoBehaviour
     [SerializeField] private GameManager _instance;
     public void LoadScene(string sceneName)
     {
+        _instance.Restart();
         SceneManager.LoadScene(sceneName);
-        
+
     }
 
     public void Quit()
